@@ -80,8 +80,9 @@ function addBubble(text, type = "bot") {
 }
 
 function buildDemoResponse() {
-  const { recipientPhone, templateName } = getState();
-  const suffix = new Date().toISOString().replace(/[-:.TZ]/g, "").slice(0, 14);
+  const { recipientPhone } = getState();
+  const rand = () => Math.random().toString(36).slice(2);
+  const raw = btoa(`${recipientPhone}${rand()}${rand()}`).replace(/=/g, "");
   return {
     messaging_product: "whatsapp",
     contacts: [
@@ -92,7 +93,7 @@ function buildDemoResponse() {
     ],
     messages: [
       {
-        id: `wamid.HBgN${suffix}ABEkARIFAhIX${templateName.toUpperCase()}AA==`
+        id: `wamid.HBgL${raw}FQIAERgSM${rand().toUpperCase()}AA==`
       }
     ]
   };
