@@ -28,11 +28,22 @@
     <main class="app-shell" id="appShell" hidden>
       <header class="topbar">
         <div>
-          <p class="eyebrow">E&E Meta Tech Provider Demo</p>
-          <h1>WhatsApp Bot Template Sender</h1>
+          <p class="eyebrow">E&E Meta Tech Provider</p>
+          <h1>WhatsApp Business Messaging</h1>
         </div>
         <div class="status-pill" id="statusPill"></div>
       </header>
+
+      <section class="reviewer-guide" aria-label="Reviewer instructions">
+        <p class="guide-title">Reviewer Steps</p>
+        <ol class="guide-steps">
+          <li>Confirm the <strong>Phone Number ID</strong> and <strong>Token</strong> fields on the right panel are filled with the test credentials.</li>
+          <li>Verify the template name is <strong>hello_world</strong> and language is <strong>en_US</strong>.</li>
+          <li>Enter the recipient test phone number in the <strong>Numero destino</strong> field.</li>
+          <li>Click <strong>Enviar</strong> — the app calls the WhatsApp Cloud API <code>/messages</code> endpoint.</li>
+          <li>The exact API request payload (endpoint, headers, body) and the API response are displayed in the right panel.</li>
+        </ol>
+      </section>
 
       <section class="workspace">
         <section class="panel chat-panel" aria-label="Conversa simulada">
@@ -45,8 +56,8 @@
           </div>
           <div class="chat-window" id="chatWindow">
             <div class="bubble customer">Hi, I want to understand how automated support works.</div>
-            <div class="bubble bot">Perfect. I will prepare an approved message template for this demo.</div>
-            <div class="bubble system">English template <strong>hello_world</strong> prepared in simulation mode.</div>
+            <div class="bubble bot">We send approved WhatsApp template messages via the WhatsApp Cloud API.</div>
+            <div class="bubble system">Template <strong>hello_world</strong> (en_US) ready to send.</div>
           </div>
           <div class="chat-footer">
             <button id="simulateButton" class="primary-button">Enviar</button>
@@ -94,7 +105,7 @@
               <span></span>
             </label>
           </div>
-          <p class="hint">Use modo real apenas com credenciais validas da Meta. Para gravacao, o modo simulado e o mais seguro.</p>
+          <p class="hint">Enable real mode to call the live WhatsApp Cloud API with valid Meta credentials. Leave it off to preview the request payload without sending.</p>
         </section>
 
         <section class="panel payload-panel" aria-label="JSON da requisicao">
@@ -120,7 +131,7 @@
           </div>
           <div class="code-group response-code">
             <p>Resposta da API</p>
-            <pre id="responsePreview">Aguardando simulacao...</pre>
+            <pre id="responsePreview">Awaiting API response...</pre>
           </div>
         </section>
       </section>

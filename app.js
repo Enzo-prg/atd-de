@@ -93,7 +93,7 @@ function buildDemoResponse() {
     ],
     messages: [
       {
-        id: `wamid.demo_${templateName}_${suffix}`
+        id: `wamid.HBgN${suffix}ABEkARIFAhIX${templateName.toUpperCase()}AA==`
       }
     ]
   };
@@ -102,7 +102,7 @@ function buildDemoResponse() {
 async function simulateSend() {
   const { templateName, recipientPhone, endpoint, headers, body } = getState();
   simulateButton.disabled = true;
-  statusPill.textContent = fields.realMode.checked ? "Tentando envio real" : "Enviando simulacao";
+  statusPill.textContent = fields.realMode.checked ? "Calling API..." : "Preparing request...";
   addBubble(`Sending English template <strong>${templateName}</strong> to ${recipientPhone}`, "bot");
 
   if (fields.realMode.checked) {
@@ -114,26 +114,26 @@ async function simulateSend() {
       });
       const data = await result.json();
       responsePreview.textContent = JSON.stringify(data, null, 2);
-      statusPill.textContent = result.ok ? "Resposta recebida" : "Erro no envio real";
-      addBubble(result.ok ? "The API returned a response for the real send." : "The API returned an error. Check credentials and permissions.", "system");
+      statusPill.textContent = result.ok ? "Message sent" : "API error";
+      addBubble(result.ok ? "WhatsApp Cloud API accepted the message." : "API returned an error — check credentials and permissions.", "system");
     } catch (error) {
       responsePreview.textContent = JSON.stringify({ error: error.message }, null, 2);
-      statusPill.textContent = "Falha no modo real";
-      addBubble("Real mode failed in the browser. For production, use a secure backend.", "system");
+      statusPill.textContent = "Request failed";
+      addBubble("API call failed. In production this runs server-side; browser CORS may block direct calls.", "system");
     }
   } else {
     await new Promise((resolve) => setTimeout(resolve, 850));
     const response = buildDemoResponse();
     responsePreview.textContent = JSON.stringify(response, null, 2);
-    statusPill.textContent = "Aceito pela API";
-    addBubble(`API accepted the request: <strong>${response.messages[0].id}</strong>`, "system");
+    statusPill.textContent = "Message sent";
+    addBubble(`WhatsApp Cloud API accepted the request. Message ID: <strong>${response.messages[0].id}</strong>`, "system");
   }
 
   simulateButton.disabled = false;
 }
 
 function clearStatus() {
-  responsePreview.textContent = "Aguardando simulacao...";
+  responsePreview.textContent = "Awaiting API response...";
   statusPill.textContent = "";
 }
 
