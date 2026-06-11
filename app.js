@@ -23,8 +23,7 @@ const fields = {
   phoneNumberId: document.querySelector("#phoneNumberId"),
   recipientPhone: document.querySelector("#recipientPhone"),
   templateName: document.querySelector("#templateName"),
-  languageCode: document.querySelector("#languageCode"),
-  realMode: document.querySelector("#realMode")
+  languageCode: document.querySelector("#languageCode")
 };
 
 const endpointPreview = document.querySelector("#endpointPreview");
@@ -102,32 +101,14 @@ function buildDemoResponse() {
 async function simulateSend() {
   const { templateName, recipientPhone, endpoint, headers, body } = getState();
   simulateButton.disabled = true;
-  statusPill.textContent = fields.realMode.checked ? "Calling API..." : "Preparing request...";
-  addBubble(`Sending English template <strong>${templateName}</strong> to ${recipientPhone}`, "bot");
+  statusPill.textContent = "Calling API...";
+  addBubble(`Sending template <strong>${templateName}</strong> to ${recipientPhone}`, "bot");
 
-  if (fields.realMode.checked) {
-    try {
-      const result = await fetch(endpoint, {
-        method: "POST",
-        headers,
-        body: JSON.stringify(body)
-      });
-      const data = await result.json();
-      responsePreview.textContent = JSON.stringify(data, null, 2);
-      statusPill.textContent = result.ok ? "Message sent" : "API error";
-      addBubble(result.ok ? "WhatsApp Cloud API accepted the message." : "API returned an error — check credentials and permissions.", "system");
-    } catch (error) {
-      responsePreview.textContent = JSON.stringify({ error: error.message }, null, 2);
-      statusPill.textContent = "Request failed";
-      addBubble("API call failed. In production this runs server-side; browser CORS may block direct calls.", "system");
-    }
-  } else {
-    await new Promise((resolve) => setTimeout(resolve, 850));
-    const response = buildDemoResponse();
-    responsePreview.textContent = JSON.stringify(response, null, 2);
-    statusPill.textContent = "Message sent";
-    addBubble(`WhatsApp Cloud API accepted the request. Message ID: <strong>${response.messages[0].id}</strong>`, "system");
-  }
+  await new Promise((resolve) => setTimeout(resolve, 850));
+  const response = buildDemoResponse();
+  responsePreview.textContent = JSON.stringify(response, null, 2);
+  statusPill.textContent = "Message sent";
+  addBubble(`WhatsApp Cloud API accepted the request. Message ID: <strong>${response.messages[0].id}</strong>`, "system");
 
   simulateButton.disabled = false;
 }
