@@ -134,7 +134,7 @@ async function simulateSend() {
 
 function clearStatus() {
   responsePreview.textContent = "Aguardando simulacao...";
-  statusPill.textContent = "Pronto para simular";
+  statusPill.textContent = "";
 }
 
 async function copyPayload() {
