@@ -1,9 +1,9 @@
 <!doctype html>
-<html lang="pt-BR">
+<html lang="en">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>E&E WhatsApp Bot Demo</title>
+    <title>E&E WhatsApp Business Messaging</title>
     <link rel="stylesheet" href="./styles.css" />
   </head>
   <body>
@@ -37,20 +37,20 @@
       <section class="reviewer-guide" aria-label="Reviewer instructions">
         <p class="guide-title">Reviewer Steps</p>
         <ol class="guide-steps">
-          <li>Confirm the <strong>Phone Number ID</strong> and <strong>Token</strong> fields on the right panel are filled with the test credentials.</li>
+          <li>Confirm the <strong>Phone Number ID</strong> and <strong>Access Token</strong> fields are filled with the test credentials.</li>
           <li>Verify the template name is <strong>hello_world</strong> and language is <strong>en_US</strong>.</li>
-          <li>Enter the recipient test phone number in the <strong>Numero destino</strong> field.</li>
-          <li>Click <strong>Enviar</strong> — the app calls the WhatsApp Cloud API <code>/messages</code> endpoint.</li>
+          <li>Enter the recipient test phone number in the <strong>Recipient Phone</strong> field.</li>
+          <li>Click <strong>Send</strong> — the app calls the WhatsApp Cloud API <code>/messages</code> endpoint.</li>
           <li>The exact API request payload (endpoint, headers, body) and the API response are displayed in the right panel.</li>
         </ol>
       </section>
 
       <section class="workspace">
-        <section class="panel chat-panel" aria-label="Conversa simulada">
+        <section class="panel chat-panel" aria-label="WhatsApp conversation">
           <div class="panel-header">
             <div>
-              <p class="panel-kicker">Canal</p>
-              <h2>Atendimento WhatsApp</h2>
+              <p class="panel-kicker">Channel</p>
+              <h2>WhatsApp Support</h2>
             </div>
             <span class="live-dot">online</span>
           </div>
@@ -60,21 +60,21 @@
             <div class="bubble system">Template <strong>hello_world</strong> (en_US) ready to send.</div>
           </div>
           <div class="chat-footer">
-            <button id="simulateButton" class="primary-button">Enviar</button>
-            <button id="clearButton" class="ghost-button">Limpar status</button>
+            <button id="simulateButton" class="primary-button">Send</button>
+            <button id="clearButton" class="ghost-button">Clear</button>
           </div>
         </section>
 
-        <section class="panel config-panel" aria-label="Configuracao da requisicao">
+        <section class="panel config-panel" aria-label="Request configuration">
           <div class="panel-header">
             <div>
-              <p class="panel-kicker">Configuracao</p>
-              <h2>Parametros Meta</h2>
+              <p class="panel-kicker">Configuration</p>
+              <h2>Meta Parameters</h2>
             </div>
           </div>
 
           <label>
-            Token temporario
+            Access Token
             <input id="token" value="EAABsbCS1iHgBO_demo_temporary_token" autocomplete="off" />
           </label>
           <label>
@@ -82,39 +82,39 @@
             <input id="graphVersion" value="v23.0" />
           </label>
           <label>
-            Phone number ID
+            Phone Number ID
             <input id="phoneNumberId" value="123456789012345" />
           </label>
           <label>
-            Numero destino
+            Recipient Phone
             <input id="recipientPhone" value="5511999999999" />
           </label>
           <label>
-            Template aprovado
+            Approved Template
             <input id="templateName" value="hello_world" />
           </label>
           <label>
-            Idioma
+            Language
             <input id="languageCode" value="en_US" />
           </label>
 
           <div class="mode-row">
-            <span>Modo real</span>
-            <label class="switch" aria-label="Ativar modo real">
+            <span>Live mode</span>
+            <label class="switch" aria-label="Toggle live mode">
               <input id="realMode" type="checkbox" />
               <span></span>
             </label>
           </div>
-          <p class="hint">Enable real mode to call the live WhatsApp Cloud API with valid Meta credentials. Leave it off to preview the request payload without sending.</p>
+          <p class="hint">Enable live mode to call the WhatsApp Cloud API with valid Meta credentials. Leave it off to preview the request payload without sending.</p>
         </section>
 
-        <section class="panel payload-panel" aria-label="JSON da requisicao">
+        <section class="panel payload-panel" aria-label="API request payload">
           <div class="panel-header">
             <div>
               <p class="panel-kicker">Live Preview</p>
-              <h2>JSON da requisicao</h2>
+              <h2>API Request</h2>
             </div>
-            <button id="copyButton" class="copy-button">Copiar</button>
+            <button id="copyButton" class="copy-button">Copy</button>
           </div>
 
           <div class="code-group">
@@ -130,7 +130,7 @@
             <pre id="bodyPreview"></pre>
           </div>
           <div class="code-group response-code">
-            <p>Resposta da API</p>
+            <p>API Response</p>
             <pre id="responsePreview">Awaiting API response...</pre>
           </div>
         </section>

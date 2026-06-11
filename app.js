@@ -141,9 +141,9 @@ async function copyPayload() {
   const { endpoint, headers, body } = getState();
   const text = JSON.stringify({ endpoint, method: "POST", headers, body }, null, 2);
   await navigator.clipboard.writeText(text);
-  copyButton.textContent = "Copiado";
+  copyButton.textContent = "Copied";
   setTimeout(() => {
-    copyButton.textContent = "Copiar";
+    copyButton.textContent = "Copy";
   }, 1200);
 }
 
