@@ -1,0 +1,131 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>E&E WhatsApp Bot Demo</title>
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <div id="loginOverlay" class="login-overlay">
+      <div class="login-card">
+        <p class="eyebrow">E&E Meta Tech Provider</p>
+        <h1 class="login-title">WhatsApp Demo</h1>
+        <p class="login-sub">Use the test credentials provided in the review submission.</p>
+        <label>
+          Login
+          <input id="loginUser" type="text" autocomplete="username" placeholder="reviewer" />
+        </label>
+        <label>
+          Password
+          <input id="loginPass" type="password" autocomplete="current-password" placeholder="••••••••" />
+        </label>
+        <p id="loginError" class="login-error" hidden>Invalid credentials. Try again.</p>
+        <button id="loginBtn" class="primary-button login-btn">Enter demo</button>
+      </div>
+    </div>
+
+    <main class="app-shell" id="appShell" hidden>
+      <header class="topbar">
+        <div>
+          <p class="eyebrow">E&E Meta Tech Provider Demo</p>
+          <h1>WhatsApp Bot Template Sender</h1>
+        </div>
+        <div class="status-pill" id="statusPill">Pronto para simular</div>
+      </header>
+
+      <section class="workspace">
+        <section class="panel chat-panel" aria-label="Conversa simulada">
+          <div class="panel-header">
+            <div>
+              <p class="panel-kicker">Canal</p>
+              <h2>Atendimento WhatsApp</h2>
+            </div>
+            <span class="live-dot">online</span>
+          </div>
+          <div class="chat-window" id="chatWindow">
+            <div class="bubble customer">Hi, I want to understand how automated support works.</div>
+            <div class="bubble bot">Perfect. I will prepare an approved message template for this demo.</div>
+            <div class="bubble system">English template <strong>hello_world</strong> prepared in simulation mode.</div>
+          </div>
+          <div class="chat-footer">
+            <button id="simulateButton" class="primary-button">Simular envio</button>
+            <button id="clearButton" class="ghost-button">Limpar status</button>
+          </div>
+        </section>
+
+        <section class="panel config-panel" aria-label="Configuracao da requisicao">
+          <div class="panel-header">
+            <div>
+              <p class="panel-kicker">Configuracao</p>
+              <h2>Parametros Meta</h2>
+            </div>
+          </div>
+
+          <label>
+            Token temporario
+            <input id="token" value="EAABsbCS1iHgBO_demo_temporary_token" autocomplete="off" />
+          </label>
+          <label>
+            Graph API version
+            <input id="graphVersion" value="v23.0" />
+          </label>
+          <label>
+            Phone number ID
+            <input id="phoneNumberId" value="123456789012345" />
+          </label>
+          <label>
+            Numero destino
+            <input id="recipientPhone" value="5511999999999" />
+          </label>
+          <label>
+            Template aprovado
+            <input id="templateName" value="hello_world" />
+          </label>
+          <label>
+            Idioma
+            <input id="languageCode" value="en_US" />
+          </label>
+
+          <div class="mode-row">
+            <span>Modo real</span>
+            <label class="switch" aria-label="Ativar modo real">
+              <input id="realMode" type="checkbox" />
+              <span></span>
+            </label>
+          </div>
+          <p class="hint">Use modo real apenas com credenciais validas da Meta. Para gravacao, o modo simulado e o mais seguro.</p>
+        </section>
+
+        <section class="panel payload-panel" aria-label="JSON da requisicao">
+          <div class="panel-header">
+            <div>
+              <p class="panel-kicker">Live Preview</p>
+              <h2>JSON da requisicao</h2>
+            </div>
+            <button id="copyButton" class="copy-button">Copiar</button>
+          </div>
+
+          <div class="code-group">
+            <p>Endpoint</p>
+            <pre id="endpointPreview"></pre>
+          </div>
+          <div class="code-group">
+            <p>Headers</p>
+            <pre id="headersPreview"></pre>
+          </div>
+          <div class="code-group body-code">
+            <p>Body</p>
+            <pre id="bodyPreview"></pre>
+          </div>
+          <div class="code-group response-code">
+            <p>Resposta da API</p>
+            <pre id="responsePreview">Aguardando simulacao...</pre>
+          </div>
+        </section>
+      </section>
+    </main>
+
+    <script src="./app.js"></script>
+  </body>
+</html>
