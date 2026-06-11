@@ -105,11 +105,26 @@ async function simulateSend() {
   statusPill.textContent = "Calling API...";
   addBubble(`Sending template <strong>${templateName}</strong> to ${recipientPhone}`, "bot");
 
-  await new Promise((resolve) => setTimeout(resolve, 850));
-  const response = buildDemoResponse();
-  responsePreview.textContent = JSON.stringify(response, null, 2);
-  statusPill.textContent = "Message sent";
-  addBubble(`WhatsApp Cloud API accepted the request. Message ID: <strong>${response.messages[0].id}</strong>`, "system");
+  try {
+    const result = await fetch(endpoint, {
+      method: "POST",
+      headers,
+      body: JSON.stringify(body)
+    });
+    const data = await result.json();
+    responsePreview.textContent = JSON.stringify(data, null, 2);
+    statusPill.textContent = result.ok ? "Message sent" : "API error";
+    addBubble(
+      result.ok
+        ? `WhatsApp Cloud API accepted the request. Message ID: <strong>${data.messages?.[0]?.id ?? ""}</strong>`
+        : "API returned an error — check credentials and phone number.",
+      "system"
+    );
+  } catch (err) {
+    responsePreview.textContent = JSON.stringify({ error: err.message }, null, 2);
+    statusPill.textContent = "Request failed";
+    addBubble("Request failed. Check credentials and try again.", "system");
+  }
 
   simulateButton.disabled = false;
 }
